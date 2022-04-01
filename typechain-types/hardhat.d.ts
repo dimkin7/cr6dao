@@ -13,15 +13,87 @@ import * as Contracts from ".";
 declare module "hardhat/types/runtime" {
   interface HardhatEthersHelpers extends HardhatEthersHelpersBase {
     getContractFactory(
-      name: "Greeter",
+      name: "AccessControl",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Greeter__factory>;
+    ): Promise<Contracts.AccessControl__factory>;
+    getContractFactory(
+      name: "IAccessControl",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IAccessControl__factory>;
+    getContractFactory(
+      name: "ERC20",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ERC20__factory>;
+    getContractFactory(
+      name: "IERC20Metadata",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC20Metadata__factory>;
+    getContractFactory(
+      name: "IERC20",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC20__factory>;
+    getContractFactory(
+      name: "ERC165",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ERC165__factory>;
+    getContractFactory(
+      name: "IERC165",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC165__factory>;
+    getContractFactory(
+      name: "DimaDAO",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.DimaDAO__factory>;
+    getContractFactory(
+      name: "DimaERC20",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.DimaERC20__factory>;
 
     getContractAt(
-      name: "Greeter",
+      name: "AccessControl",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.Greeter>;
+    ): Promise<Contracts.AccessControl>;
+    getContractAt(
+      name: "IAccessControl",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IAccessControl>;
+    getContractAt(
+      name: "ERC20",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ERC20>;
+    getContractAt(
+      name: "IERC20Metadata",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC20Metadata>;
+    getContractAt(
+      name: "IERC20",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC20>;
+    getContractAt(
+      name: "ERC165",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ERC165>;
+    getContractAt(
+      name: "IERC165",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC165>;
+    getContractAt(
+      name: "DimaDAO",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.DimaDAO>;
+    getContractAt(
+      name: "DimaERC20",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.DimaERC20>;
 
     // default types
     getContractFactory(
