@@ -24,3 +24,5 @@ export type { DimaDAO } from "./contracts/DimaDAO";
 export { DimaDAO__factory } from "./factories/contracts/DimaDAO__factory";
 export type { DimaERC20 } from "./contracts/DimaERC20";
 export { DimaERC20__factory } from "./factories/contracts/DimaERC20__factory";
+export type { DimaRecipient } from "./contracts/DimaRecipient";
+export { DimaRecipient__factory } from "./factories/contracts/DimaRecipient__factory";

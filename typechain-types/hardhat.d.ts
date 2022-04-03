@@ -48,6 +48,10 @@ declare module "hardhat/types/runtime" {
       name: "DimaERC20",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.DimaERC20__factory>;
+    getContractFactory(
+      name: "DimaRecipient",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.DimaRecipient__factory>;
 
     getContractAt(
       name: "AccessControl",
@@ -94,6 +98,11 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.DimaERC20>;
+    getContractAt(
+      name: "DimaRecipient",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.DimaRecipient>;
 
     // default types
     getContractFactory(

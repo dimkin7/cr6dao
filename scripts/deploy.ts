@@ -1,29 +1,32 @@
-// We require the Hardhat Runtime Environment explicitly here. This is optional
-// but useful for running the script in a standalone fashion through `node <script>`.
-//
-// When running the script with `npx hardhat run <script>` you'll find the Hardhat
-// Runtime Environment's members available in the global scope.
-import { ethers } from "hardhat";
+import { ethers, config } from "hardhat";
 
 async function main() {
-  // Hardhat always runs the compile task when running scripts with its command
-  // line interface.
-  //
-  // If this script is run directly using `node` you may want to call compile
-  // manually to make sure everything is compiled
-  // await hre.run('compile');
+  const [owner] = await ethers.getSigners();
+  console.log("Deploying contracts with the account:", owner.address);
 
-  // We get the contract to deploy
-  const Greeter = await ethers.getContractFactory("Greeter");
-  const greeter = await Greeter.deploy("Hello, Hardhat!");
+  //deploy ERC20
+  const factoryERC20 = await ethers.getContractFactory("DimaERC20");
+  const contractERC20 = await factoryERC20.deploy(ethers.utils.parseUnits("300.0", 18));
+  await contractERC20.deployed();
+  console.log(await contractERC20.symbol(), contractERC20.address);
+  const decimals = await contractERC20.decimals();
 
-  await greeter.deployed();
+  //deploy DAO  
+  const factoryDAO = await ethers.getContractFactory("DimaDAO");
+  //constructor(address chairman, address voteToken, uint256 minQuorum, uint256 debatingPeriodDuration)
+  const contractDAO = await factoryDAO.deploy(owner.address, contractERC20.address, ethers.utils.parseUnits("210.0", decimals), 60 * 60 * 24 * 3);
+  await contractDAO.deployed();
+  console.log("DimaDAO:", contractDAO.address);
 
-  console.log("Greeter deployed to:", greeter.address);
+
+  //deploy Recipient  
+  const factoryRecipient = await ethers.getContractFactory("DimaRecipient");
+  const contractRecipient = await factoryRecipient.deploy(contractDAO.address);
+  await contractRecipient.deployed();
+  console.log("DimaRecipient:", contractRecipient.address);
 }
 
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
+// run
 main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
